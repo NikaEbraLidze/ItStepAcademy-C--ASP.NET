@@ -38,9 +38,13 @@ class Program
         //         Console.WriteLine();
         //     }
         // }
-        // catch
+        // catch (FormatException)
         // {
-        //     Console.WriteLine("შეცდომა მოხდა! შეამოწმეთ შეყვანილი მონაცემები.");
+        //     Console.WriteLine("შეიყვანეთ მხოლოდ რიცხვი!");
+        // }
+        // catch (Exception ex)
+        // {
+        //     Console.WriteLine("შეცდომა: " + ex.Message);
         // }
 
 
@@ -78,9 +82,13 @@ class Program
         //         }
         //     }
         // }
-        // catch
+        // catch (FormatException)
         // {
-        //     Console.WriteLine("შეცდომა მოხდა! შეამოწმეთ შეყვანილი მონაცემები.");
+        //     Console.WriteLine("შეიყვანეთ მხოლოდ რიცხვები!");
+        // }
+        // catch (Exception ex)
+        // {
+        //     Console.WriteLine("შეცდომა: " + ex.Message);
         // }
 
 
@@ -137,9 +145,17 @@ class Program
                 Console.WriteLine("შედეგი: " + result);
                 correctInput = true; // თუ აქამდე მოვედით, ყველაფერი სწორადაა => ციკლი მთავრდება
             }
-            catch
+            catch (FormatException)
             {
-                Console.WriteLine("შეცდომა! სცადეთ თავიდან.\n");
+                Console.WriteLine("შეიყვანეთ მხოლოდ რიცხვები!");
+            }
+            catch (DivideByZeroException ex)
+            {
+                Console.WriteLine("შეცდომა: " + ex.Message);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("შეცდომა: " + ex.Message);
             }
         }
     }
