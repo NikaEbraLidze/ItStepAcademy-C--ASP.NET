@@ -4,159 +4,305 @@ class Program
 {
     static void Main()
     {
-        // დავალება 1
+        // Array & Loop Practice Tasks in C#:
 
-        // დაწერეთ პროგრამა რომელიც გამოიტანს კონსოლში ფიფქებით შედგენილ ნახევარპირამიდის ფორმას.
-        // მაგალითად ციფრი 4–ის შეყვანისას კონსოლში გამოვა შემდეგი სახის ნახევარ პირამიდა:
-        // *
-        // **
-        // ***
-        // ****
+        // 1. Print Array Elements
+        //     o Create an integer array with 5 numbers and use a for loop to print all the elements.
 
+        // int[] arr = [1, 2, 3, 4];
 
+        // for (int i = 0; i < arr.Length; i++)
+        //     Console.WriteLine(arr[i]);
 
+        // 2. Find Maximum Element
+        //     o Write a program that finds the largest number in an array.
+        // int[] arr = [1, 20, 3, 4];
+        // int maxNum = arr[0];
 
-
-
-        // try
+        // for (int i = 0; i < arr.Length; i++)
         // {
-        //     Console.Write("შეიყვანეთ რიცხვი: ");
-        //     int n = int.Parse(Console.ReadLine());
+        //     if (maxNum < arr[i])
+        //         maxNum = arr[i];
+        // }
 
-        //     if (n <= 0)
+        // 3. Find Minimum Element
+        //     o Write a program that finds the smallest number in an array.
+
+        // int[] arr = [1, 20, 3, 4];
+        // int minNum = arr[0];
+
+        // for (int i = 0; i < arr.Length; i++)
+        // {
+        //     if (minNum > arr[i])
+        //         minNum = arr[i];
+        // }
+
+
+        // 4. Sum of Array Elements
+        //     o Calculate and print the sum of all elements in an integer array.
+
+        // int[] arr = [1, 20, 3, 4];
+        // int sumAllElements = 0;
+
+        // for (int i = 0; i < arr.Length; i++)
+        // {
+        //     sumAllElements += arr[i];
+        // }
+
+
+        // 5. Reverse Array
+        //     o Print the elements of an array in reverse order using a for loop.
+
+        // int[] arr = [1, 2, 3, 4];
+
+        // for (int i = arr.Length; i > 0; i--)
+        //     Console.WriteLine(arr[i]);
+
+        // 6. Count Even and Odd Numbers
+        //     o Given an integer array, count how many even and odd numbers are present.
+
+        // int[] arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+        // int oddNums = 0;
+        // int evenNums = 0;
+
+        // for (int i = 0; i < arr.Length; i++)
+        // {
+        //     if (arr[i] % 2 == 0)
         //     {
-        //         throw new Exception("რიცხვი უნდა იყოს დადებითი!");
+        //         evenNums++;
         //     }
-
-        //     // ციკლი ნახევარპირამიდისთვის
-        //     for (int i = 1; i <= n; i++)
+        //     else
         //     {
-        //         for (int j = 1; j <= i; j++)
+        //         oddNums++;
+        //     }
+        // }
+
+        // 7. Search Element in Array
+        //     o Ask the user for a number and check if it exists in the array (linear search).
+
+        // int[] arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+        // Console.Write("Enter a Number: ");
+        // bool searchNum = int.TryParse(Console.ReadLine(), out int result);
+        // if (searchNum)
+        // {
+        //     bool found = false;
+        //     for (int i = 0; i < arr.Length; i++)
+        //     {
+        //         if (result == arr[i])
+        //             found = true;
+        //     }
+        //     if (found)
+        //         Console.WriteLine("Number exists in arr");
+        //     else
+        //         Console.WriteLine("Number doesn't exist in arr");
+        // }
+
+        // 8. Copy Array
+        //     o Copy all the elements of one array into another using a loop.
+
+        // int[] arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+        // int[] copyArr = new int[arr.Length];
+
+        // for (int i = 0; i < arr.Length; i++)
+        // {
+        //     copyArr[i] = arr[i];
+        //     Console.WriteLine($"Arr: {arr[i]}    Copy: {copyArr[i]}");
+        // }
+
+        // 9. Second Largest Number
+        //     o Find the second largest element in an array without sorting.
+
+        // int[] arr = [1, 20, 3112, 412, 345, 226, 7, 8, 9435, 10];
+        // int secLargNum = 0;
+        // int largestNum = 0;//1
+
+        // for (int i = 0; i < arr.Length; i++)
+        // {
+        //     if (largestNum < arr[i])
+        //     {
+        //         largestNum = arr[i];
+
+        //         for (int b = 0; b < arr.Length; b++)
         //         {
-        //             Console.Write("*");
+        //             if (largestNum > arr[b] && secLargNum < arr[b] && largestNum > secLargNum)
+        //             {
+        //                 secLargNum = arr[b];
+        //             }
         //         }
-        //         Console.WriteLine();
         //     }
         // }
-        // catch (FormatException)
+
+        // Console.Write(secLargNum);
+
+        // 10. Frequency of Elements
+        //     · Print how many times each element appears in the array.
+
+        // int[] arr = [1, 20, 7, 412, 7, 226, 7, 8, 1, 20];
+        // int[,] matrix = new int[2, arr.Length];
+
+        // int filled = 0;
+
+        // for (int i = 0; i < arr.Length; i++)
         // {
-        //     Console.WriteLine("შეიყვანეთ მხოლოდ რიცხვი!");
-        // }
-        // catch (Exception ex)
-        // {
-        //     Console.WriteLine("შეცდომა: " + ex.Message);
-        // }
+        //     bool alreadyCounted = false;
 
-
-
-
-
-        // დავალება 2
-        // მომხმარებელს კლავიატურის გამოყენებით შეჰყავს 2 რიცხვი. ჩვენი ამოცანაა, რომ ვაჩვენოთ ყველა
-        // ლუწი რიცხვი მითითებულ დიაპაზონში. თუ დიაპზონის საზღვრები არასწორად არის მოცემული, თქვენ უნდა
-        // ჩაასწოროთ ის. მაგალითად, თუ მომხმარებელმა შეიყვანა 20 და 11, ჩასწორებაა საჭირო, რადგან დიაპაზონის
-        // დასაწყისი უნდა იყოს - 11, და დასასრული - 20.
-
-        // try
-        // {
-        //     Console.Write("შეიყვანეთ პირველი რიცხვი: ");
-        //     int a = int.Parse(Console.ReadLine());
-
-        //     Console.Write("შეიყვანეთ მეორე რიცხვი: ");
-        //     int b = int.Parse(Console.ReadLine());
-
-        //     // თუ დიაპაზონი არასწორადაა, შევცვალოთ
-        //     if (a > b)
+        //     for (int k = 0; k < filled; k++)
         //     {
-        //         int temp = a;
-        //         a = b;
-        //         b = temp;
-        //     }
-
-        //     Console.WriteLine($"ლუწი რიცხვები {a}-დან {b}-მდე:");
-        //     for (int i = a; i <= b; i++)
-        //     {
-        //         if (i % 2 == 0)
+        //         if (matrix[0, k] == arr[i])
         //         {
-        //             Console.Write(i + " ");
+        //             alreadyCounted = true;
+        //             break;
         //         }
         //     }
+
+        //     if (alreadyCounted) continue;
+
+        //     int count = 0;
+
+        //     for (int b = 0; b < arr.Length; b++)
+        //     {
+        //         if (arr[i] == arr[b])
+        //         {
+        //             count++;
+        //         }
+        //     }
+
+        //     matrix[0, filled] = arr[i];
+        //     matrix[1, filled] = count;
+        //     filled++;
         // }
-        // catch (FormatException)
+
+        // for (int c = 0; c < filled; c++)
         // {
-        //     Console.WriteLine("შეიყვანეთ მხოლოდ რიცხვები!");
+        //     Console.WriteLine($"{matrix[0, c]} - {matrix[1, c]}");
         // }
-        // catch (Exception ex)
+
+
+
+
+        // 🔹 10 Middle-Level Array & Loop Exercises (C#)
+
+        // 1. Array Rotation
+        // o Rotate the elements of an array to the left or right by a given number of positions.
+
+        // int[] arr = [1, 20, 7, 412, 7, 11111, 226, 7, 8, 1, 20];
+
+        // if (arr.Length % 2 == 0)
         // {
-        //     Console.WriteLine("შეცდომა: " + ex.Message);
+        //     for (int i = 0; i < arr.Length / 2; i++)
+        //     {
+        //         int a = arr[i];
+        //         int b = arr[arr.Length - 1 - i];
+
+        //         arr[i] = b;
+        //         arr[arr.Length - 1 - i] = a;
+        //     }
+        // }
+        // else
+        // {
+        //     for (int i = 0; i < (arr.Length - 1) / 2; i++)
+        //     {
+        //         int a = arr[i];
+        //         int b = arr[arr.Length - 1 - i];
+
+        //         arr[i] = b;
+        //         arr[arr.Length - 1 - i] = a;
+        //     }
+        // }
+
+        // for (int i = 0; i < arr.Length; i++)
+        // {
+        //     Console.Write($"{arr[i]}  ");
         // }
 
 
+        // 2. Sort Array Without Built-in Sort
+        // o Implement a sorting algorithm (like Bubble Sort or Selection Sort) to sort the array in ascending order.
+
+        // int[] arr = { 5, 2, 9, 1, 5, 6 };
+
+        // for (int i = 0; i < arr.Length - 1; i++)
+        // {
+        //     int minElementIndex = i;
+        //     int minElement = arr[i];
+
+        //     for (int j = i + 1; j < arr.Length; j++)
+        //     {
+        //         if (arr[j] < minElement)
+        //         {
+        //             minElement = arr[j];
+        //             minElementIndex = j;
+        //         }
+        //     }
+
+        //     int temp = arr[i];
+        //     arr[i] = arr[minElementIndex];
+        //     arr[minElementIndex] = temp;
+        // }
+
+        // for (int a = 0; a < arr.Length; a++)
+        // {
+        //     Console.Write($"{arr[a]}  ");
+        // }
+
+        // 3. Remove Duplicates
+        // o Remove duplicate elements from an array and print the unique elements.
+
+        // int[] arr = { 1, 2, 3, 2, 4, 1, 5 };
+        // int[] unique = new int[arr.Length];
+        // int uniqueCount = 0;
+
+        // for (int i = 0; i < arr.Length; i++)
+        // {
+        //     bool exists = false;
+
+        //     for (int j = 0; j < arr.Length; j++)
+        //     {
+        //         if (arr[i] == unique[j])
+        //         {
+        //             exists = true;
+        //             break;
+        //         }
+        //     }
+
+        //     if (!exists)
+        //     {
+        //         unique[uniqueCount] = arr[i];
+        //         uniqueCount++;
+        //     }
+        // }
+
+        // for (int i = 0; i < uniqueCount; i++)
+        // {
+        //     Console.Write(unique[i] + " ");
+        // }
+
+        // 4. Merge Two Arrays
+        // o Merge two sorted arrays into one sorted array (without using Array.Sort).
+
+        // 5. Insert Element in Array
+        // o Insert a new element at a specific position in the array (shifting elements as needed).
+
+        // 6. Delete Element from Array
+        // o Delete a specific element from an array (shifting elements left to fill the gap).
+
+        // 7. Find Pairs with Given Sum
+        // o Find and print all pairs of numbers in an array whose sum equals a target value.
+
+        // 8. Check if Array is Palindrome
+        // o Determine if the array reads the same forward and backward.
+
+        // 9. Find Missing Number
+        // o Given an array containing numbers from 1 to N with one missing, find the missing number.
+
+        // 10. Count Consecutive Duplicates
+        // · Find the element with the longest consecutive repetition (e.g., in [1,1,2,2,2,3] → 2 appears 3 times in a row).
 
 
 
 
-        // Exception
-        // · კალკულატორის დავალება გადააწყეთ ისე რომ გამოიყენოთ Exception Handling, Try Catch და Throw
-
-
-        bool correctInput = false; // სანამ ეს არ გახდება true, ციკლი იმუშავებს
-
-        while (!correctInput)
-        {
-            try
-            {
-                Console.Write("შეიყვანეთ პირველი რიცხვი: ");
-                double num1 = double.Parse(Console.ReadLine());
-
-                Console.Write("შეიყვანეთ მოქმედება (+, -, *, /): ");
-                string op = Console.ReadLine();
-
-                Console.Write("შეიყვანეთ მეორე რიცხვი: ");
-                double num2 = double.Parse(Console.ReadLine());
-
-                double result = 0;
-
-                if (op == "+")
-                {
-                    result = num1 + num2;
-                }
-                else if (op == "-")
-                {
-                    result = num1 - num2;
-                }
-                else if (op == "*")
-                {
-                    result = num1 * num2;
-                }
-                else if (op == "/")
-                {
-                    if (num2 == 0)
-                    {
-                        throw new Exception("ნულზე გაყოფა აკრძალულია!");
-                    }
-                    result = num1 / num2;
-                }
-                else
-                {
-                    throw new Exception("არასწორი ოპერაცია!");
-                }
-
-                Console.WriteLine("შედეგი: " + result);
-                correctInput = true; // თუ აქამდე მოვედით, ყველაფერი სწორადაა => ციკლი მთავრდება
-            }
-            catch (FormatException)
-            {
-                Console.WriteLine("შეიყვანეთ მხოლოდ რიცხვები!");
-            }
-            catch (DivideByZeroException ex)
-            {
-                Console.WriteLine("შეცდომა: " + ex.Message);
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("შეცდომა: " + ex.Message);
-            }
-        }
     }
+
 }
+
+
