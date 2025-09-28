@@ -1,4 +1,5 @@
-﻿using System;
+using System;
+using System.Security.Cryptography.X509Certificates;
 
 class Program
 {
@@ -11,19 +12,14 @@ class Program
 
         // int[] arr = [1, 2, 3, 4];
 
-        // for (int i = 0; i < arr.Length; i++)
-        //     Console.WriteLine(arr[i]);
+        // LogInt(arr);
 
         // 2. Find Maximum Element
         //     o Write a program that finds the largest number in an array.
         // int[] arr = [1, 20, 3, 4];
         // int maxNum = arr[0];
 
-        // for (int i = 0; i < arr.Length; i++)
-        // {
-        //     if (maxNum < arr[i])
-        //         maxNum = arr[i];
-        // }
+        // findMaxElement(arr, maxNum);
 
         // 3. Find Minimum Element
         //     o Write a program that finds the smallest number in an array.
@@ -31,11 +27,7 @@ class Program
         // int[] arr = [1, 20, 3, 4];
         // int minNum = arr[0];
 
-        // for (int i = 0; i < arr.Length; i++)
-        // {
-        //     if (minNum > arr[i])
-        //         minNum = arr[i];
-        // }
+        // findMinElement(arr, minNum);
 
 
         // 4. Sum of Array Elements
@@ -44,10 +36,7 @@ class Program
         // int[] arr = [1, 20, 3, 4];
         // int sumAllElements = 0;
 
-        // for (int i = 0; i < arr.Length; i++)
-        // {
-        //     sumAllElements += arr[i];
-        // }
+        // sumElements(arr, sumAllElements);
 
 
         // 5. Reverse Array
@@ -55,47 +44,32 @@ class Program
 
         // int[] arr = [1, 2, 3, 4];
 
-        // for (int i = arr.Length; i > 0; i--)
-        //     Console.WriteLine(arr[i]);
+        // LogIntReverse(arr);
 
         // 6. Count Even and Odd Numbers
         //     o Given an integer array, count how many even and odd numbers are present.
 
         // int[] arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-        // int oddNums = 0;
-        // int evenNums = 0;
 
-        // for (int i = 0; i < arr.Length; i++)
-        // {
-        //     if (arr[i] % 2 == 0)
-        //     {
-        //         evenNums++;
-        //     }
-        //     else
-        //     {
-        //         oddNums++;
-        //     }
-        // }
+        // int evenNums = CountEven(arr);
+        // int oddNums = CountOdd(arr);
+
+        // Console.WriteLine($"Even numbers: {evenNums}");
+        // Console.WriteLine($"Odd numbers: {oddNums}");
 
         // 7. Search Element in Array
         //     o Ask the user for a number and check if it exists in the array (linear search).
 
         // int[] arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-        // Console.Write("Enter a Number: ");
-        // bool searchNum = int.TryParse(Console.ReadLine(), out int result);
-        // if (searchNum)
-        // {
-        //     bool found = false;
-        //     for (int i = 0; i < arr.Length; i++)
-        //     {
-        //         if (result == arr[i])
-        //             found = true;
-        //     }
-        //     if (found)
-        //         Console.WriteLine("Number exists in arr");
-        //     else
-        //         Console.WriteLine("Number doesn't exist in arr");
-        // }
+
+        // int number = GetUserInput("Enter a number: ");
+        // bool exists = ContainsNumber(arr, number);
+
+        // if (exists)
+        //     Console.WriteLine("Number exists in arr");
+        // else
+        //     Console.WriteLine("Number doesn't exist in arr");
+
 
         // 8. Copy Array
         //     o Copy all the elements of one array into another using a loop.
@@ -103,34 +77,16 @@ class Program
         // int[] arr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
         // int[] copyArr = new int[arr.Length];
 
-        // for (int i = 0; i < arr.Length; i++)
-        // {
-        //     copyArr[i] = arr[i];
-        //     Console.WriteLine($"Arr: {arr[i]}    Copy: {copyArr[i]}");
-        // }
+        // CopyArrToArr(arr, copyArr);
 
         // 9. Second Largest Number
         //     o Find the second largest element in an array without sorting.
 
         // int[] arr = [1, 20, 3112, 412, 345, 226, 7, 8, 9435, 10];
-        // int secLargNum = 0;
-        // int largestNum = 0;//1
+        // (int largest, int secondLargest) = FindTwoLargest(arr);
 
-        // for (int i = 0; i < arr.Length; i++)
-        // {
-        //     if (largestNum < arr[i])
-        //     {
-        //         largestNum = arr[i];
-
-        //         for (int b = 0; b < arr.Length; b++)
-        //         {
-        //             if (largestNum > arr[b] && secLargNum < arr[b] && largestNum > secLargNum)
-        //             {
-        //                 secLargNum = arr[b];
-        //             }
-        //         }
-        //     }
-        // }
+        // Console.WriteLine($"Largest number: {largest}");
+        // Console.WriteLine($"Second largest number: {secondLargest}");
 
         // Console.Write(secLargNum);
 
@@ -144,38 +100,16 @@ class Program
 
         // for (int i = 0; i < arr.Length; i++)
         // {
-        //     bool alreadyCounted = false;
+        //     if (AlreadyCounted(matrix, filled, arr[i]))
+        //         continue;
 
-        //     for (int k = 0; k < filled; k++)
-        //     {
-        //         if (matrix[0, k] == arr[i])
-        //         {
-        //             alreadyCounted = true;
-        //             break;
-        //         }
-        //     }
 
-        //     if (alreadyCounted) continue;
+        //     int count = CountOccurrences(arr, arr[i]);
 
-        //     int count = 0;
-
-        //     for (int b = 0; b < arr.Length; b++)
-        //     {
-        //         if (arr[i] == arr[b])
-        //         {
-        //             count++;
-        //         }
-        //     }
-
-        //     matrix[0, filled] = arr[i];
-        //     matrix[1, filled] = count;
-        //     filled++;
+        //     AddToMatrix(matrix, ref filled, arr[i], count);
         // }
 
-        // for (int c = 0; c < filled; c++)
-        // {
-        //     Console.WriteLine($"{matrix[0, c]} - {matrix[1, c]}");
-        // }
+        // PrintMatrix(matrix, filled);
 
 
 
@@ -189,31 +123,14 @@ class Program
 
         // if (arr.Length % 2 == 0)
         // {
-        //     for (int i = 0; i < arr.Length / 2; i++)
-        //     {
-        //         int a = arr[i];
-        //         int b = arr[arr.Length - 1 - i];
-
-        //         arr[i] = b;
-        //         arr[arr.Length - 1 - i] = a;
-        //     }
+        //     ChangeElementsIndex(arr.Length / 2, arr);
         // }
         // else
         // {
-        //     for (int i = 0; i < (arr.Length - 1) / 2; i++)
-        //     {
-        //         int a = arr[i];
-        //         int b = arr[arr.Length - 1 - i];
-
-        //         arr[i] = b;
-        //         arr[arr.Length - 1 - i] = a;
-        //     }
+        //     ChangeElementsIndex((arr.Length - 1) / 2, arr);
         // }
 
-        // for (int i = 0; i < arr.Length; i++)
-        // {
-        //     Console.Write($"{arr[i]}  ");
-        // }
+        // PrintArr(arr);
 
 
         // 2. Sort Array Without Built-in Sort
@@ -226,56 +143,22 @@ class Program
         //     int minElementIndex = i;
         //     int minElement = arr[i];
 
-        //     for (int j = i + 1; j < arr.Length; j++)
-        //     {
-        //         if (arr[j] < minElement)
-        //         {
-        //             minElement = arr[j];
-        //             minElementIndex = j;
-        //         }
-        //     }
+        //     GetMinElement(arr, minElement, minElementIndex)
 
         //     int temp = arr[i];
         //     arr[i] = arr[minElementIndex];
         //     arr[minElementIndex] = temp;
         // }
 
-        // for (int a = 0; a < arr.Length; a++)
-        // {
-        //     Console.Write($"{arr[a]}  ");
-        // }
+        // PrintArr(arr);
 
         // 3. Remove Duplicates
         // o Remove duplicate elements from an array and print the unique elements.
 
         // int[] arr = { 1, 2, 3, 2, 4, 1, 5 };
-        // int[] unique = new int[arr.Length];
-        // int uniqueCount = 0;
+        // int[] unique = GetUniqueElements(arr, out int uniqueCount);
 
-        // for (int i = 0; i < arr.Length; i++)
-        // {
-        //     bool exists = false;
-
-        //     for (int j = 0; j < arr.Length; j++)
-        //     {
-        //         if (arr[i] == unique[j])
-        //         {
-        //             exists = true;
-        //             break;
-        //         }
-        //     }
-
-        //     if (!exists)
-        //     {
-        //         unique[uniqueCount] = arr[i];
-        //         uniqueCount++;
-        //     }
-        // }
-
-        // for (int i = 0; i < uniqueCount; i++)
-        // {
-        //     Console.Write(unique[i] + " ");
-        // }
+        // PrintArray(unique, uniqueCount);
 
         // 4. Merge Two Arrays
         // o Merge two sorted arrays into one sorted array (without using Array.Sort).
@@ -301,6 +184,224 @@ class Program
 
 
 
+    }
+
+
+    static void LogInt(int[] arr)
+    {
+        for (int i = 0; i < arr.Length; i++)
+            Console.WriteLine(arr[i]);
+    }
+
+    static void LogIntReverse(int[] arr)
+    {
+        for (int i = arr.Length; i > 0; i--)
+            Console.WriteLine(arr[i]);
+    }
+
+    static void findMaxElement(int[] arr, int maxNum)
+    {
+        for (int i = 0; i < arr.Length; i++)
+        {
+            if (maxNum < arr[i])
+                maxNum = arr[i];
+        }
+    }
+
+    static void findMinElement(int[] arr, int minNum)
+    {
+        for (int i = 0; i < arr.Length; i++)
+        {
+            if (minNum > arr[i])
+                minNum = arr[i];
+        }
+    }
+
+    static void sumElements(int[] arr, int sum)
+    {
+        for (int i = 0; i < arr.Length; i++)
+        {
+            sum += arr[i];
+        }
+    }
+
+    static int CountEven(int[] arr)
+    {
+        int count = 0;
+        foreach (var num in arr)
+        {
+            if (num % 2 == 0) count++;
+        }
+        return count;
+    }
+
+    static int CountOdd(int[] arr)
+    {
+        int count = 0;
+        foreach (var num in arr)
+        {
+            if (num % 2 != 0) count++;
+        }
+        return count;
+    }
+
+    static int GetUserInput(string message)
+    {
+        Console.Write(message);
+        bool valid = int.TryParse(Console.ReadLine(), out int result);
+
+        if (!valid)
+        {
+            Console.WriteLine("Invalid input, defaulting to 0.");
+            return 0;
+        }
+
+        return result;
+    }
+
+    static bool ContainsNumber(int[] arr, int target)
+    {
+        foreach (var num in arr)
+        {
+            if (num == target)
+                return true;
+        }
+        return false;
+    }
+
+
+    static void CopyArrToArr(int[] arrOne, int[] arrTwo)
+    {
+        for (int i = 0; i < arrOne.Length; i++)
+        {
+            arrTwo[i] = arrOne[i];
+            Console.WriteLine($"Arr: {arrOne[i]}    Copy: {arrTwo[i]}");
+        }
+    }
+
+    static (int largest, int secondLargest) FindTwoLargest(int[] arr)
+    {
+        int largest = int.MinValue;
+        int secondLargest = int.MinValue;
+
+        foreach (int num in arr)
+        {
+            if (num > largest)
+            {
+                secondLargest = largest;
+                largest = num;
+            }
+            else if (secondLargest < num && largest > num)
+            {
+                secondLargest = num;
+            }
+        }
+
+        return (largest, secondLargest);
+    }
+
+
+    static bool AlreadyCounted(int[,] matrix, int filled, int value)
+    {
+        for (int k = 0; k < filled; k++)
+        {
+            if (matrix[0, k] == value)
+                return true;
+        }
+        return false;
+    }
+
+    static int CountOccurrences(int[] arr, int value)
+    {
+        int count = 0;
+        foreach (var item in arr)
+        {
+            if (item == value) count++;
+        }
+        return count;
+    }
+
+    static void AddToMatrix(int[,] matrix, ref int filled, int value, int count)
+    {
+        matrix[0, filled] = value;
+        matrix[1, filled] = count;
+        filled++;
+    }
+
+    static void PrintMatrix(int[,] matrix, int filled)
+    {
+        for (int i = 0; i < filled; i++)
+        {
+            Console.WriteLine($"{matrix[0, i]} - {matrix[1, i]}");
+        }
+    }
+
+    static void ChangeElementsIndex(int length, int[] arr)
+    {
+        for (int i = 0; i < length , i++)
+        {
+            int a = arr[i];
+            int b = arr[arr.Length - 1 - i];
+
+            arr[i] = b;
+            arr[arr.Length - 1 - i] = a;
+
+        }
+    }
+
+    static void PrintArr(int[] arr)
+    {
+        for (int i = 0; i < arr.Length; i++)
+        {
+            Console.Write($"{arr[i]}  ");
+        }
+    }
+
+    static void GetMinElement(int[] arr, int minElement, int minElementIndex)
+    {
+        for (int i = 0; i < arr.Length; i++)
+        {
+            if (arr[i] < minElement)
+            {
+                minElement = arr[i];
+                minElementIndex = i;
+            }
+        }
+    }
+
+    static int[] GetUniqueElements(int[] arr, out int uniqueCount)
+    {
+        int[] unique = new int[arr.Length];
+        uniqueCount = 0;
+
+        for (int i = 0; i < arr.Length; i++)
+        {
+            if (!ExistsInArray(unique, uniqueCount, arr[i]))
+            {
+                unique[uniqueCount] = arr[i];
+                uniqueCount++;
+            }
+        }
+
+        return unique;
+    }
+
+    static bool ExistsInArray(int[] arr, int length, int value)
+    {
+        for (int i = 0; i < length; i++)
+        {
+            if (arr[i] == value) return true;
+        }
+        return false;
+    }
+
+    static void PrintArray(int[] arr, int length)
+    {
+        for (int i = 0; i < length; i++)
+        {
+            Console.Write(arr[i] + " ");
+        }
+        Console.WriteLine();
     }
 
 }
