@@ -5,46 +5,80 @@ class Program
 {
     static void Main()
     {
-        try
-        {
-            Animal[] animals = new Animal[]
+        /////////////////////// Level 1 /////////////////////
+        ///////////////////// Task 1 /////////////////
+        List<IAnimal> animals = new List<IAnimal>
             {
-                new Dog("Bimi"),
-                new Cat("mesi")
+                new Dog(),
+                new Cat()
             };
 
-            foreach (Animal animal in animals)
-            {
-                animal.MakeSound();
-            }
-        }
-        catch (ArgumentException ex)
+        foreach (IAnimal animal in animals)
         {
-            Console.WriteLine($"Error: {ex.Message}");
+            animal.MakeSound();
         }
 
-        try
+        ///////////////////// Task 2 /////////////////
+        Car car = new Car();
+        car.Model = "Porshe";
+        car.Year = 2025;
+        car.Start();
+
+        ///////////////////// Task 3 /////////////////
+        Document doc = new();
+        doc.Read();
+        doc.Write();
+
+
+
+        /////////////////////// Level 2 /////////////////////
+        ///////////////////// Task 4 //////////////////
+        IPaymentProcessor processor;
+        decimal paymentAmount = 100.50m;
+
+        Console.Write("Enter payment method (CreditCard/PayPal): ");
+        string method = Console.ReadLine()?.Trim();
+
+        if (method?.Equals("CreditCard", StringComparison.OrdinalIgnoreCase) == true)
         {
-
-            CheckingAccount acc1 = new CheckingAccount("GE12345678", 200m);
-            CheckingAccount acc2 = new CheckingAccount("CHK002", 500m);
-            LoanAccount loan1 = new LoanAccount("LN001", 2000m);
-
-            TransactionService service = new TransactionService();
-            service.Transfer(acc1, acc2, 100m);
-
-            service.Transfer(acc2, loan1, 100m);
-
-            service.Transfer(loan1, acc1, 100m);
-
+            processor = new CreditCardPayment();
         }
-        catch (Exception ex)
+        else if (method?.Equals("PayPal", StringComparison.OrdinalIgnoreCase) == true)
         {
-            Console.WriteLine($" error: {ex.Message}");
+            processor = new PayPalPayment();
         }
-        finally
+        else
         {
-            Console.WriteLine("\n operation end");
+            Console.WriteLine("Invalid payment method selected.");
+            return;
         }
+        processor.ProcessPayment(paymentAmount);
+
+
+
+        ///////////////////// Task 5 //////////////////
+        ILogger logger = new ConsoleLogger();
+
+        logger.Log("Simple message logged.");
+        logger.LogWithTime("Timed message logged using default implementation.");
+
+
+
+        ///////////////////// Task 6 //////////////////
+        List<IShape> shapes = new List<IShape>
+        {
+            new Rectangle(10, 5),
+            new Circle(3),
+            new Rectangle(2, 2)
+        };
+
+        double totalArea = 0;
+
+        foreach (IShape shape in shapes)
+        {
+            totalArea += shape.GetArea();
+        }
+
+        Console.WriteLine($"Total area of all shapes: {totalArea:F2}");
     }
 }
