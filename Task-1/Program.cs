@@ -1,84 +1,30 @@
 using System;
 using System.Security.Cryptography.X509Certificates;
+using static VehicleProcessor;
 
 class Program
 {
     static void Main()
     {
-        /////////////////////// Level 1 /////////////////////
-        ///////////////////// Task 1 /////////////////
-        List<IAnimal> animals = new List<IAnimal>
-            {
-                new Dog(),
-                new Cat()
-            };
 
-        foreach (IAnimal animal in animals)
-        {
-            animal.MakeSound();
-        }
+        // string[] data = File.ReadAllLines(@"../../../vehicles.csv");
+        string filePath = @"../../../vehicles.csv";
 
-        ///////////////////// Task 2 /////////////////
-        Car car = new Car();
-        car.Model = "Porshe";
-        car.Year = 2025;
-        car.Start();
-
-        ///////////////////// Task 3 /////////////////
-        Document doc = new();
-        doc.Read();
-        doc.Write();
+        //    1. უნდა შექმნათ მანქანის კლასი
+        //    2. უნდა დაწეროთ მეთოდი რომელიც ერთ string line - ს გარდაქმნის მანქანის ობიექტად
+        //    ("Dodge,Charger,4,2.2,Front-Wheel Drive,Manual 5-spd,23,27,33") => 
+        //    new Car(){Dodge,Charger,4,2.2,Front-Wheel Drive,Manual 5-spd,23,27,33}
+        //    3. ფაილიდან უნდა წაიკითხოთ თითოეული line
+        //    4.თითოეული line გარდაქმენით მანქანის ობიექტად, გარდაქმნილი მანქანები დაიმახსოვრეთ მასივში ან ლისტში
+        Vehicle[] vehiclesList = ReadAllData(filePath);
 
 
 
-        /////////////////////// Level 2 /////////////////////
-        ///////////////////// Task 4 //////////////////
-        IPaymentProcessor processor;
-        decimal paymentAmount = 100.50m;
-
-        Console.Write("Enter payment method (CreditCard/PayPal): ");
-        string method = Console.ReadLine()?.Trim();
-
-        if (method?.Equals("CreditCard", StringComparison.OrdinalIgnoreCase) == true)
-        {
-            processor = new CreditCardPayment();
-        }
-        else if (method?.Equals("PayPal", StringComparison.OrdinalIgnoreCase) == true)
-        {
-            processor = new PayPalPayment();
-        }
-        else
-        {
-            Console.WriteLine("Invalid payment method selected.");
-            return;
-        }
-        processor.ProcessPayment(paymentAmount);
-
-
-
-        ///////////////////// Task 5 //////////////////
-        ILogger logger = new ConsoleLogger();
-
-        logger.Log("Simple message logged.");
-        logger.LogWithTime("Timed message logged using default implementation.");
-
-
-
-        ///////////////////// Task 6 //////////////////
-        List<IShape> shapes = new List<IShape>
-        {
-            new Rectangle(10, 5),
-            new Circle(3),
-            new Rectangle(2, 2)
-        };
-
-        double totalArea = 0;
-
-        foreach (IShape shape in shapes)
-        {
-            totalArea += shape.GetArea();
-        }
-
-        Console.WriteLine($"Total area of all shapes: {totalArea:F2}");
+        //      1. მოძებნეთ ყველა მერსედესი
+        Vehicle[] filteredCars = SearchCarByModel(vehiclesList, "Mercedes-Benz");
+        LogArr(filteredCars);
+        //      2. მოძებნეთ 10 ყველაზე ეკონომიური მანქანა
+        // Vehicle[] economicCars = FindEconomicCars(vehiclesList, 10);
+        // LogArr(economicCars);
     }
 }
