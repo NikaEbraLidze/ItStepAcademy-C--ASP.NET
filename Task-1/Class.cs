@@ -1,50 +1,23 @@
-public interface IVehicle
-{
-    string Make { get; }
-    string Model { get; }
-    int Cylinder { get; }
-    double Engine { get; }
-    string Drive { get; }
-    string Transmission { get; }
-    int City { get; }
-    int Combined { get; }
-    int Highway { get; }
-}
+public delegate List<T> ListProcessor<T>(List<T> sourceList);
 
-public class Vehicle : IVehicle
-{
-    public string Make { get; set; }
-    public string Model { get; set; }
-    public int Cylinder { get; set; }
-    public double Engine { get; set; }
-    public string Drive { get; set; }
-    public string Transmission { get; set; }
-    public int City { get; set; }
-    public int Combined { get; set; }
-    public int Highway { get; set; }
+public delegate bool FindDelegate(List<int> sourceList);
 
-    public Vehicle(string make, string model, string cylinder, string engine, string drive, string transmission, string city, string combined, string highway)
+public delegate int NumOrDefDelegate(List<int> sourceList);
+
+public static class ListUtils
+{
+    public static List<T> DelegateExecutor<T>(List<T> sourceList, ListProcessor<T> listProcessor)
     {
-        Make = make;
-        Model = model;
-        Cylinder = int.Parse(cylinder);
-        Engine = double.Parse(engine);
-        Drive = drive;
-        Transmission = transmission;
-        City = int.Parse(city);
-        Combined = int.Parse(combined);
-        Highway = int.Parse(highway);
+        return listProcessor(sourceList);
     }
 
-    public static Vehicle Parse(string input)
+    public static bool CompareEmelemts(List<int> sourceList, FindDelegate findDelegate)
     {
-        string[] data = input.Split(',');
+        return findDelegate(sourceList);
+    }
 
-        if (data.Length != 9)
-            throw new ArgumentException("Invalid input!");
-
-        Vehicle result = new Vehicle(data[0], data[1], data[2], data[3], data[4], data[5], data[6], data[7], data[8]);
-
-        return result;
+    public static int CompareEmelemts(List<int> sourceList, NumOrDefDelegate numOrDefDelegate)
+    {
+        return numOrDefDelegate(sourceList);
     }
 }

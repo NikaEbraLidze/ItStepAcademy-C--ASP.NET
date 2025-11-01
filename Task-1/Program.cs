@@ -1,30 +1,41 @@
 using System;
 using System.Security.Cryptography.X509Certificates;
-using static VehicleProcessor;
+
+using static ListUtils;
+using static Algorithms;
+// დელეგატების გამოყენებით დაწერეთ შემდეგი მეთოდები
+
+//    · Reverse აბრუნებს გადაცემული მასივის შეტრიალებულ ვარიანტს
+//    · Sort აბრუნებს გადაცემული მასივის დალაგებულ ვარიანტს
+//    · Any აბრუნებს true თუ მასივის რომელიმე ელემენტი ემთხვევა მოსაძებნად გადაცემულ ელემენტებს
+//    · All აბრუნებს true თუ მასივის ყველა ელემენტი ემთხვევა მოსაძებნად გადაცემულ ელემენტებს
+//    · FirstOrDefault მასივში მოძებნის გადაცემული რიცხვის პირველივე მნიშვნელობას თუ არ მოიძებნა დააბრუნებს default - ს
+//    · LastOrDefault მასივში მოძებნის გადაცემული რიცხვის ბოლო მნიშვნელობას თუ არ მოიძებნა დააბრუნებს default - ს
+//    · FindAll მოძებნის და დააბრუნებს მასივის ყველა იმ ელემენტს რომელიც გადაცემულია მოსაძებნად
+//    · FindIndex მასივში მოძებნის გადაცემული რიცხვის პირველივე მნიშვნელობის ინდექსს თუ არ მოიძებნა დააბრუნებს -1
+//    · FindLastIndex მასივში მოძებნის გადაცემული რიცხვის ბოლო მნიშვნელობის ინდექსს თუ არ მოიძებნა დააბრუნებს -1
+//    · Sum შეკრებს მასივის ყველა ელემენტს.
 
 class Program
 {
     static void Main()
     {
+        List<int> intItems = new() { 1, 2, 3, 4, 5 };
 
-        // string[] data = File.ReadAllLines(@"../../../vehicles.csv");
-        string filePath = @"../../../vehicles.csv";
+        List<int> reversedIntItems = DelegateExecutor(intItems, Reverse);
+        List<int> sortedIntItems = DelegateExecutor(intItems, Sort);
 
-        //    1. უნდა შექმნათ მანქანის კლასი
-        //    2. უნდა დაწეროთ მეთოდი რომელიც ერთ string line - ს გარდაქმნის მანქანის ობიექტად
-        //    ("Dodge,Charger,4,2.2,Front-Wheel Drive,Manual 5-spd,23,27,33") => 
-        //    new Car(){Dodge,Charger,4,2.2,Front-Wheel Drive,Manual 5-spd,23,27,33}
-        //    3. ფაილიდან უნდა წაიკითხოთ თითოეული line
-        //    4.თითოეული line გარდაქმენით მანქანის ობიექტად, გარდაქმნილი მანქანები დაიმახსოვრეთ მასივში ან ლისტში
-        Vehicle[] vehiclesList = ReadAllData(filePath);
+        bool isExist = CompareEmelemts(intItems, Any);
+        bool isExistList = CompareEmelemts(intItems, All);
 
+        int FirstNum = CompareEmelemts(intItems, FirstOrDefault);
+        int LasrNum = CompareEmelemts(intItems, LastOrDefault);
 
 
-        //      1. მოძებნეთ ყველა მერსედესი
-        Vehicle[] filteredCars = SearchCarByModel(vehiclesList, "Mercedes-Benz");
-        LogArr(filteredCars);
-        //      2. მოძებნეთ 10 ყველაზე ეკონომიური მანქანა
-        // Vehicle[] economicCars = FindEconomicCars(vehiclesList, 10);
-        // LogArr(economicCars);
+
+        int FirstIndex = CompareEmelemts(intItems, FindIndex);
+        int LastIndex = CompareEmelemts(intItems, FindLastIndex);
+
+        int sumElements = CompareEmelemts(intItems, SumAllElements);
     }
 }

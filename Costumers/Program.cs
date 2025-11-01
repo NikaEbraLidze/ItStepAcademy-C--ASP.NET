@@ -39,6 +39,7 @@ class Program
         // Input.UpdateCustomer(customers, filePath);
 
         // 5.   int DeleteCustomer(int customerId); ფაილში შლის იმ მომხმარებელს რომლის customerId - იც ემთხვევა ფაილში არსებულ მომხმარებელს
+
         // Customer[] customers = GetAllCustomers(filePath);
         // Input.DeleteCustomer(customers, 2, filePath);
     }

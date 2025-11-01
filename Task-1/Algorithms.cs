@@ -1,94 +1,134 @@
 
-public static class VehicleProcessor
+public class Algorithms
 {
-    public static Vehicle[] ReadAllData(string filePath)
+    public static List<T> Reverse<T>(List<T> inputList)
     {
-        string[] data = File.ReadAllLines(filePath);
+        List<T> reversedList = new List<T>();
 
-        List<Vehicle> vehiclesList = new List<Vehicle>();
-
-        bool isHeader = true;
-        foreach (string car in data)
+        for (int i = inputList.Count - 1; i >= 0; i--)
         {
-            if (isHeader)
-            {
-                isHeader = false;
-                continue;
-            }
-
-            try
-            {
-                Vehicle vehicle = Vehicle.Parse(car.Trim());
-                vehiclesList.Add(vehicle);
-            }
-            catch (ArgumentException ex)
-            {
-                Console.WriteLine($"Skipping invalid record: '{car.Trim()}' - Error: {ex.Message}");
-            }
-            catch (FormatException ex)
-            {
-                Console.WriteLine($"Skipping record with invalid number format: '{car.Trim()}' - Error: {ex.Message}");
-            }
+            reversedList.Add(inputList[i]);
         }
 
-        return vehiclesList.ToArray();
+        return reversedList;
     }
 
-    public static Vehicle[] SearchCarByModel(Vehicle[] vehiclesList, string Model)
+    public static List<T> Sort<T>(List<T> inputList)
+        where T : IComparable<T>
     {
-        List<Vehicle> mercedesList = new List<Vehicle>();
+        List<T> sortedList = new List<T>(inputList);
+        int n = sortedList.Count;
 
-        foreach (Vehicle car in vehiclesList)
+        T temp;
+
+        for (int i = 0; i < n - 1; i++)
         {
-            if (car.Make == Model)
-                mercedesList.Add(car);
-            else
-                continue;
-        }
-
-        return mercedesList.ToArray();
-    }
-
-    public static void LogArr(Vehicle[] arr)
-    {
-        foreach (Vehicle item in arr)
-        {
-            Console.WriteLine($"Make: {item.Make}, Model: {item.Model}, Engine: {item.Engine}L, Combined MPG: {item.Combined}");
-        }
-    }
-
-    public static Vehicle[] SortItemsByCombined(Vehicle[] vehiclesList)
-    {
-        for (int i = 0; i < vehiclesList.Length - 1; i++)
-        {
-            for (int j = i + 1; j < vehiclesList.Length; j++)
+            for (int j = 0; j < n - i - 1; j++)
             {
-                if (vehiclesList[j].Combined > vehiclesList[i].Combined)
+                if (sortedList[j].CompareTo(sortedList[j + 1]) > 0)
                 {
-                    Vehicle temp = vehiclesList[j];
-                    vehiclesList[j] = vehiclesList[i];
-                    vehiclesList[i] = temp;
+                    temp = sortedList[j];
+                    sortedList[j] = sortedList[j + 1];
+                    sortedList[j + 1] = temp;
                 }
             }
         }
 
-        return vehiclesList;
+        return sortedList;
     }
 
-    public static Vehicle[] FindEconomicCars(Vehicle[] vehiclesList, int quantity)
+    public static bool Any(List<int> inputList)
     {
-        if (quantity > vehiclesList.Length)
-            throw new ArgumentException("Quantity can't exceed vehicles length");
-
-        Vehicle[] vehicles = SortItemsByCombined(vehiclesList);
-
-        Vehicle[] result = new Vehicle[quantity];
-
-        for (int i = 0; i < result.Length; i++)
+        for (int i = 0; i < inputList.Count; i++)
         {
-            result[i] = vehicles[i];
+            if (inputList[i] == 10)
+            {
+                return true;
+            }
         }
 
-        return result;
+        return false;
+    }
+
+    public static bool All(List<int> inputList)
+    {
+        List<int> forCompare = new() { 1, 2, 3, 4, 5 };
+
+        if (inputList.Count != forCompare.Count)
+            return false;
+
+        for (int i = 0; i < inputList.Count; i++)
+        {
+            if (inputList[i] != forCompare[i])
+            {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    public static int FirstOrDefault(List<int> inputList)
+    {
+        for (int i = 0; i < inputList.Count; i++)
+        {
+            if (inputList[i] == 10)
+            {
+                return inputList[i];
+            }
+        }
+
+        return default;
+    }
+
+    public static int LastOrDefault(List<int> inputList)
+    {
+        for (int i = inputList.Count - 1; i >= 0; i++)
+        {
+            if (inputList[i] == 10)
+            {
+                return inputList[i];
+            }
+        }
+
+        return default;
+    }
+
+    public static int FindIndex(List<int> inputList)
+    {
+        for (int i = 0; i < inputList.Count; i++)
+        {
+            if (inputList[i] == 10)
+            {
+                return i;
+            }
+        }
+
+        return -1;
+    }
+
+    public static int FindLastIndex(List<int> inputList)
+    {
+        for (int i = inputList.Count - 1; i >= 0; i++)
+        {
+            if (inputList[i] == 10)
+            {
+                return i;
+            }
+        }
+
+        return -1;
+    }
+
+    public static int SumAllElements(List<int> inputList)
+    {
+        int sum = 0;
+        for (int i = inputList.Count - 1; i >= 0; i++)
+        {
+            sum += inputList[i];
+        }
+
+        return sum;
     }
 }
+
