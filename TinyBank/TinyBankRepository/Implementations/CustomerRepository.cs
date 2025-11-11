@@ -1,3 +1,4 @@
+using System.Text;
 using TinyBank.Repository.Models;
 using TinyBankRepository.Interfaces;
 using TinyBankRepository.Models;
@@ -60,16 +61,26 @@ namespace TinyBank.Repository.Implementations
 
             var customers = new List<Customer>();
 
-            var lines = File.ReadAllLines(_filePath);
-
-            if (lines.Length <= 1)
-                return customers;
-
-            for (int i = 1; i < lines.Length; i++)
+            using (FileStream fs = new FileStream(_filePath, FileMode.Open, FileAccess.Read))
             {
-                var customer = FromCsv(lines[i]);
-                if (customer != null)
-                    customers.Add(customer);
+                byte[] buffer = new byte[fs.Length];
+                fs.ReadExactly(buffer);
+                string content = Encoding.UTF8.GetString(buffer);
+
+                var lines = content.Split(new[] { "\r\n", "\n" }, StringSplitOptions.None);
+
+                if (lines.Length <= 1)
+                    return customers;
+
+                for (int i = 1; i < lines.Length; i++)
+                {
+                    if (string.IsNullOrWhiteSpace(lines[i]))
+                        continue;
+
+                    var customer = FromCsv(lines[i]);
+                    if (customer != null)
+                        customers.Add(customer);
+                }
             }
 
             return customers;
@@ -107,7 +118,13 @@ namespace TinyBank.Repository.Implementations
                 lines.Add(ToCsv(customer));
             }
 
-            File.WriteAllLines(_filePath, lines);
+            string text = string.Join(Environment.NewLine, lines);
+
+            using (FileStream fs = new FileStream(_filePath, FileMode.Create, FileAccess.Write))
+            {
+                byte[] bytes = Encoding.UTF8.GetBytes(text);
+                fs.Write(bytes, 0, bytes.Length);
+            }
         }
 
         private string ToCsv(Customer customer) =>

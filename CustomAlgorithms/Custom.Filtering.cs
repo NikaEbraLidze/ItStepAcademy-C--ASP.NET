@@ -54,6 +54,7 @@ namespace Custom.Filtering
                 {
                     yield return item;
                 }
+                index++;
             }
         }
         #endregion
@@ -214,7 +215,7 @@ namespace Custom.Filtering
             Func<TSource, bool> predicate
         )
         {
-            TSource? ret = default;
+            TSource ret = default!;
             bool foundAny = false;
             foreach (TSource item in source)
             {
