@@ -6,4 +6,8 @@
     <Nullable>disable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\TinyBank.Tests\TinyBank.Tests.csproj" />
+  </ItemGroup>
+
 </Project>
